@@ -15,6 +15,7 @@ import { Button } from "./ui/button";
 type Props = {};
 
 const AddNote = (props: Props) => {
+  const [input, setInput] = React.useState("");
   return (
     <Dialog>
       <DialogTrigger>
@@ -31,11 +32,20 @@ const AddNote = (props: Props) => {
           </DialogDescription>
         </DialogHeader>
         <form>
-          <Input placeholder="Name..." className="mb-5" />
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Name..."
+            className="mb-5"
+          />
           {/* <div className="h-4 "></div> */}
-          <div className="flex items-center">
-            <Button></Button>
-            <Button>Create</Button>
+          <div className="flex gap-3 items-center">
+            <Button type="reset" variant={"secondary"}>
+              Cancel
+            </Button>
+            <Button type="submit" className="bg-green-600">
+              Create
+            </Button>
           </div>
         </form>
       </DialogContent>

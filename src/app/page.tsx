@@ -1,5 +1,6 @@
 import TypewriterPage from "@/components/TypewriterPage";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -13,6 +14,11 @@ export default function Home() {
         <h2 className="font-semibold text-3xl text-center text-slate-700 mt-4">
           <TypewriterPage />
         </h2>
+        <div className="mt-8 flex justify-center">
+          <Link href="/dashboard">
+            <Button className="bg-green-600">Start Taking Notes! 📝</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
