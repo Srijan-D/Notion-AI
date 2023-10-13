@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import axios from "axios";
@@ -17,6 +18,7 @@ import { useMutation } from "@tanstack/react-query";
 type Props = {};
 
 const AddNote = (props: Props) => {
+  const router = useRouter();
   const [input, setInput] = React.useState("");
   const createNotes = useMutation({
     mutationFn: async () => {
@@ -28,17 +30,18 @@ const AddNote = (props: Props) => {
   });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (input === "") {
       window.alert("Please enter a name");
       return;
     }
     createNotes.mutate(undefined, {
-      onSuccess: () => {
-        console.log("success");
+      onSuccess: ({ note_id }) => {
+        console.log("success", note_id);
+        router.push(`/notes/${note_id}`);
       },
       onError: () => {
         console.log("error");
+        window.alert("An error occured while creating the notebook");
       },
     });
   };
@@ -70,7 +73,14 @@ const AddNote = (props: Props) => {
             <Button type="reset" variant={"secondary"}>
               Cancel
             </Button>
-            <Button type="submit" className="bg-green-600">
+            <Button
+              type="submit"
+              className="bg-green-600"
+              disabled={createNotes.isLoading}
+            >
+              {createNotes.isLoading && (
+                <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              )}
               Create
             </Button>
           </div>

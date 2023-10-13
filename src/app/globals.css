@@ -79,3 +79,8 @@
 .tiptap.ProseMirror {
   outline: none;
 }
+
+.is-active {
+  background-color: #dadadada;
+  border-radius: 2px;
+}

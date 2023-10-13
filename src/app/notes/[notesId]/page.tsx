@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { clerk } from "@/lib/clerk-server";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import TipTapEditor from "@/components/TipTapEditor";
 
 type Props = {
   params: {
@@ -46,7 +47,9 @@ const NotebookPage = async ({ params: { notesId } }: Props) => {
         </div>
 
         <div className="h-4"></div>
-        <div className="border-stone-200 shadow-xl border px-16 py-7 w-full rounded-lg"></div>
+        <div className="border-stone-200 shadow-xl border px-16 py-7 w-full rounded-lg">
+          <TipTapEditor note={note} />
+        </div>
       </div>
     </div>
   );
