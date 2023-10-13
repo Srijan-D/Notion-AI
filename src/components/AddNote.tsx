@@ -11,11 +11,38 @@ import {
 import { Plus } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
 type Props = {};
 
 const AddNote = (props: Props) => {
   const [input, setInput] = React.useState("");
+  const createNotes = useMutation({
+    mutationFn: async () => {
+      const response = await axios.post("/api/create-note", {
+        name: input,
+      });
+      return response.data;
+    },
+  });
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (input === "") {
+      window.alert("Please enter a name");
+      return;
+    }
+    createNotes.mutate(undefined, {
+      onSuccess: () => {
+        console.log("success");
+      },
+      onError: () => {
+        console.log("error");
+      },
+    });
+  };
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -31,7 +58,7 @@ const AddNote = (props: Props) => {
             Add a new note by clicking the following button
           </DialogDescription>
         </DialogHeader>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
