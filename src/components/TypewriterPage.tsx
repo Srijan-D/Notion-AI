@@ -9,10 +9,10 @@ const TypewriterPage = (props: Props) => {
     <Typewriter
       onInit={(typewriter) => {
         typewriter
-          .typeString("🚀 Maximize Productivity.")
+          .typeString("Maximize Productivity.")
           .pauseFor(1000)
           .deleteAll()
-          .typeString("📝Make your notes smarter.")
+          .typeString("Make your notes smarter.")
           .start();
       }}
       options={{
