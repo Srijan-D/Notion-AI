@@ -1,22 +1,31 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
 import Menubar from "@/components/MenuBar";
 import { Button } from "./ui/button";
+import { useDebounce } from "@/lib/useDebounce";
 type Props = {};
 
 const TipTapEditor = (props: Props) => {
-  const [input, setInput] = useState("");
+  const [editorState, setEditorState] = useState("");
+
   const editor = useEditor({
     autofocus: true,
     extensions: [StarterKit],
-    content: input,
+    content: editorState,
     onUpdate: ({ editor }) => {
-      setInput(editor.getHTML());
+      setEditorState(editor.getHTML());
     },
   });
+
+  const debounceEditorState = useDebounce(editorState, 500);
+
+  useEffect(() => {
+    console.log(editorState);
+  }, [debounceEditorState]);
+
   return (
     <React.Fragment>
       <div className="flex">
