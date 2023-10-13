@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
-import Menubar from "./Menubar";
+import Menubar from "@/components/MenuBar";
 import { Button } from "./ui/button";
 type Props = {};
 
@@ -20,10 +20,12 @@ const TipTapEditor = (props: Props) => {
   return (
     <React.Fragment>
       <div className="flex">
-        <Menubar />
+        {editor && <Menubar editor={editor} />}
         <Button className="ml-auto">Save</Button>
       </div>
-      <EditorContent editor={editor} />
+      <div className="prose">
+        <EditorContent editor={editor} />
+      </div>
     </React.Fragment>
   );
 };
