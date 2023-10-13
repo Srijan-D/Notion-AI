@@ -7,6 +7,8 @@ import { Separator } from "@/components/ui/separator";
 import AddNote from "@/components/AddNote";
 import { auth } from "@clerk/nextjs";
 import { db } from "@/lib/db";
+import Image from "next/image";
+
 import { $notes } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
@@ -51,8 +53,8 @@ const Dashboard = async (props: Props) => {
                 <img
                   width={400}
                   height={200}
-                  alt={`${note.name}`}
-                  src={note.imageUrl || " "}
+                  alt={note.name}
+                  src={note.imageUrl || ""}
                 />
                 <div className="p-4">
                   <h3 className="text-xl font-semibold text-gray-900">
