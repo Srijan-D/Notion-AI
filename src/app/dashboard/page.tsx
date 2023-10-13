@@ -40,9 +40,11 @@ const Dashboard = async (props: Props) => {
         <div className="h-8"></div>
         <Separator />
         <div className="h-8"></div>
-        <div className="text-center">
-          <h2 className="text-xl text-gray-500">No notes yet!༼ つ ◕_◕ ༽つ</h2>
-        </div>
+        {notes.length === 0 && (
+          <div className="text-center">
+            <h2 className="text-xl text-gray-500">No notes yet!༼ つ ◕_◕ ༽つ</h2>
+          </div>
+        )}
 
         {/* all notes */}
         <div className="grid grid-cols-1 md:grid-cols-5  gap-4 sm:grid-cols-3">
