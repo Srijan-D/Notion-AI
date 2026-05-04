@@ -5,9 +5,9 @@ dotenv.config({ path: ".env" });
 //  specify the path to the .env file
 
 export default {
-  driver: "pg",
   schema: "./src/lib/db/schema.ts",
+  dialect: "postgresql", 
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL!,
+    url: process.env.DATABASE_URL!,
   },
 } satisfies Config;
