@@ -3,7 +3,7 @@ import React from "react";
 import {
   Bold,
   Code,
-  CodepenIcon,
+  CodeIcon,
   Heading1,
   Heading2,
   Heading3,
@@ -106,7 +106,7 @@ const Menubar = ({ editor }: Props) => {
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
         className={editor.isActive("codeBlock") ? "is-active" : ""}
       >
-        <CodepenIcon className="w-6 h-6" />
+        <CodeIcon className="w-6 h-6" />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}

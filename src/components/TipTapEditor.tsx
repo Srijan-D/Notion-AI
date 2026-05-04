@@ -6,7 +6,7 @@ import { StarterKit } from "@tiptap/starter-kit";
 import Menubar from "@/components/MenuBar";
 import { Button } from "./ui/button";
 import axios from "axios";
-import { useCompletion } from "ai/react";
+import { useCompletion } from "@ai-sdk/react";
 import { useDebounce } from "@/lib/useDebounce";
 import { useMutation } from "@tanstack/react-query";
 import { NoteType } from "@/lib/db/schema";
@@ -80,7 +80,7 @@ const TipTapEditor = ({ note }: Props) => {
       <div className="flex">
         {editor && <Menubar editor={editor} />}
         <Button className="ml-auto" disabled variant={"default"}>
-          {saveNotes.isLoading ? "Saving..." : "Saved"}
+          {saveNotes.isPending ? "Saving..." : "Saved"}
         </Button>
       </div>
       <div className="prose prose-sm w-full mt-4">

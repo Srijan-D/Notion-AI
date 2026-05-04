@@ -1,10 +1,9 @@
-import { auth } from "@clerk/nextjs";
 import React from "react";
 import { db } from "@/lib/db";
 import { $notes } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
-import { clerk } from "@/lib/clerk-server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import TipTapEditor from "@/components/TipTapEditor";
@@ -20,7 +19,8 @@ const NotebookPage = async ({ params: { notesId } }: Props) => {
   //async to make it a server componenet and so it can give pre-rendered html
   const { userId } = await auth();
   if (!userId) return redirect("/dashboard");
-  const user = await clerk.users.getUser(userId);
+  const client = await clerkClient();
+  const user = await client.users.getUser(userId);
 
   const notes = await db
     .select()

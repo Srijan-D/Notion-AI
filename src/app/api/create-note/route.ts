@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { generatePrompt, generateImage } from "@/lib/openai";
 import { db } from "@/lib/db";
@@ -7,7 +7,7 @@ import { $notes } from "@/lib/db/schema";
 export const runtime = "edge";
 
 export async function POST(req: Request) {
-  const { userId } = auth();
+  const { userId } = await auth();
   if (!userId) {
     return new NextResponse("unauthorized", { status: 401 });
   }
