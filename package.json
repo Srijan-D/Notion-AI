@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/react": "^3.0.177",
     "@clerk/nextjs": "^7.3.0",
     "@neondatabase/serverless": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -30,12 +31,14 @@
     "gh": "^2.8.9",
     "lucide-react": "^1.14.0",
     "next": "^16.2.4",
+    "next-themes": "^0.4.6",
     "openai-edge": "^1.2.3",
     "pg": "^8.20.0",
     "pgshims": "github:neondatabase/serverless",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "react": "^19",
     "react-dom": "^19",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "tailwindcss-animate": "^1.0.7",
     "typewriter-effect": "^2.22.0"

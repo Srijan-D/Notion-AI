@@ -14,6 +14,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 type Props = {};
 
@@ -50,7 +51,8 @@ const AddNote = (props: Props) => {
       },
       onError: () => {
         console.log("error");
-        window.alert("An error occured while creating the notebook");
+        // window.alert("An error occured while creating the notebook");
+        toast.error("An error occured while creating the notebook");
       },
     });
   };
@@ -85,9 +87,9 @@ const AddNote = (props: Props) => {
             <Button
               type="submit"
               className="bg-green-600"
-              disabled={createNotes.isLoading}
+              disabled={createNotes.isPending}
             >
-              {createNotes.isLoading && (
+              {createNotes.isPending && (
                 <Loader2 className="w-4 h-4 animate-spin mr-2" />
               )}
               Create
