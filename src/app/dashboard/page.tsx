@@ -1,13 +1,12 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 import { Separator } from "@/components/ui/separator";
 import AddNote from "@/components/AddNote";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+
 import { db } from "@/lib/db";
-import Image from "next/image";
 
 import { $notes } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
@@ -15,7 +14,7 @@ import { eq } from "drizzle-orm";
 type Props = {};
 
 const Dashboard = async (props: Props) => {
-  const { userId } = auth();
+  const { userId } = await auth();
   const notes = await db
     .select()
     .from($notes)
